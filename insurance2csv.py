@@ -3,13 +3,13 @@ import csv
 import insurance2csv_config as config 
 import sys
 
-auto = "csvs/Homework - Auto Insurance.csv"
-home = "csvs/Homework - Home Insurance.csv"
+auto = "input/Homework - Auto Insurance.csv"
+home = "input/Homework - Home Insurance.csv"
 inputs = auto, home 
 fieldnames = ['Provider Name','CampaignID','Cost Per Ad Click','Redirect Link','Phone Number','Address','Zipcode']       
 
 def write_csv():
-    with open("out.csv", "w", newline="") as out:   
+    with open("output/out.csv", "w", newline="") as out:   
         writer = csv.DictWriter(out, fieldnames=fieldnames)
         
         for filename in inputs:
@@ -19,11 +19,15 @@ def write_csv():
                 for line in reader:
                     new_line = config.UniformRow(fieldnames)
                     
-                    new_line.add(line)                  #adding new line to dict
-                    new_line.normalize()                #trimming 
-                    new_line.check_instance_type()      #break and report if types don't match
-                    new_line.set_new_type()             #try to set new types (CPC => float)
+                    new_line.add(line)                      #adding new line to dict
+                    new_line.normalize()                    #trimming 
+                    try:
+                        new_line.check_instance_type()      #break and report if types don't match
+                        new_line.set_new_type()             #try to set new types (CPC => float)
+                        writer.writerow(new_line.new_row)            
+                    except:
+                        print('Offending data: ' + str(new_line.new_row))
+                        next
                     
-                    writer.writerow(new_line.new_row)
 
 write_csv()

@@ -29,17 +29,12 @@ class UniformRow():
 
     def check_instance_type(self):
         #check for null/empty before writing (phone number excluded)
-        try:
-            if isinstance(self.new_row['Provider Name']      , type(None)):  raise TypeError 
-            if isinstance(self.new_row['CampaignID']         , type(None)):  raise TypeError 
-            if isinstance(self.new_row['Cost Per Ad Click']  , type(None)):  raise TypeError 
-            if isinstance(self.new_row['Redirect Link']      , type(None)):  raise TypeError 
-            if isinstance(self.new_row['Address']            , type(None)):  raise TypeError 
-            if isinstance(self.new_row['Zipcode']            , type(None)):  raise TypeError 
+        for k in self.new_row.keys():
+            if k == 'Phone Number':
+                next
+            elif isinstance(self.new_row[k], type(None)):  
+                raise TypeError
 
-        #report rows with empty non-nullables
-        except:
-            print('Offending Data: ' + str(self.new_row))
 
     def set_new_type(self):
         #set CPC as float
@@ -48,5 +43,5 @@ class UniformRow():
             return self.new_row
         #report non-convertibles 
         except:
-            print('Offending data: ' + str(self.new_row))
+            raise TypeError
 

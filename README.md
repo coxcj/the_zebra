@@ -1,9 +1,9 @@
 # The Zebra Interview Assignment - insurance2csv.py
 
-The goal of the exercise was to combine two given CSVs into one CSV with schema as described in the instructions. Any rows with non-conforming data was to be excluded and reported. 
+The goal of the exercise was to combine two given CSVs into one CSV with schema as described in the instructions. Any rows with non-conforming data was to be excluded and reported. The new unified CSV is written to the_zebra/output/out.csv
 
 
-## Setup
+##Setup
 
 This code was tested on Python 3.7. 
 

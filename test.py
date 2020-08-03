@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import unittest
-from insurance_config import UniformRow
+from insurance2csv_config import UniformRow
 fieldnames = ['Provider Name','CampaignID','Cost Per Ad Click','Redirect Link','Phone Number','Address','Zipcode']
 
 
